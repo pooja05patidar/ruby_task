@@ -19,18 +19,18 @@ module BookModule
 
   @@books={}
 
-  def add_book(id, title, author, description)
+  def self.add_book(id, title, author, description)
     b = Book.new(id, title, author, description)
 
     if @@books[id]
       puts "book with id #{id} already exit"
     else
-      @@books[id] = b.to_s
+      @@books[id] = b
     end
   end
 
 
-  def display_books()
+  def self.display_books()
     puts "Books:"
     p @@books
 

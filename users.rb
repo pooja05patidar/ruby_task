@@ -3,6 +3,7 @@ module UserModule
     attr_accessor :id ,:username,:first_name,:last_name , :password
     @@id=2
 
+
     def initialize(username,first_name,last_name, password)
       @id = @@id += 1
       @username = username
@@ -27,21 +28,26 @@ module UserModule
       "lastname : #{last_name}}"\
     end
   end
+  @users = {}
 
-  @@users = {}
 
   def self.add_user(username, first_name, last_name, password)
     u=User.new(username,first_name,last_name,password)
 
-    if @@users[username]
+    if @users[username]
       puts "user with username #{username} already exit"
     else
-      @@users[username] = u.to_s
+      @users[username] = u.to_s
     end
   end
 
-  def display_users()
+  def self.display_users()
     puts "Users:"
-    p @@users
+    @users.map do |key,value|
+      puts key , value
+    end
+  end
+  def users
+    @users
   end
 end

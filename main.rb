@@ -42,15 +42,15 @@ while true
     l_name=gets.chomp
     puts "enter password"
     pass=gets.chomp
-    book_store.add_user(u_name,f_name,l_name,pass)
+    UserModule.add_user(u_name,f_name,l_name,pass)
     puts "user #{u_name} has been created."
 
   when 2
-    book_store.display_users()
-    book_store.display_books()
+    UserModule.display_users()
+    BookModule.display_books()
 
   when 3
-    book_storeadmin()
+    Admin.admin()
 
   when 4
     puts "Enter your role (admin or user) for searching:"
