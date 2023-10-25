@@ -1,3 +1,4 @@
+#books.rb
 module BookModule
   class Book
     attr_accessor :id ,:title, :author, :description
@@ -19,7 +20,7 @@ module BookModule
 
   @@books={}
 
-  def add_book(id, title, author, description)
+  def self.add_book(id, title, author, description)
     b = Book.new(id, title, author, description)
 
     if @@books[id]
@@ -30,8 +31,8 @@ module BookModule
   end
 
 
-  def display_books()
-    puts "Books:"
+  def self.display_books()
+    puts 'Books:'
     p @@books
 
   end

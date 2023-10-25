@@ -1,3 +1,4 @@
+# users.rb
 module UserModule
   class User
     attr_accessor :id ,:username,:first_name,:last_name , :password
@@ -11,14 +12,14 @@ module UserModule
       @password = password
     end
 
-    def login(password)
-      if password == @password
-        @logged_in = true
-        puts "Login successful for user #{@username}."
-      else
-        puts "Login failed. Incorrect password."
-      end
-    end
+    # def login(password)
+    #   if password == @password
+    #     @logged_in = true
+    #     puts "Login successful for user #{@username}."
+    #   else
+    #     puts "Login failed. Incorrect password."
+    #   end
+    # end
 
     def to_s
       "{user ID: #{id}\n"\
@@ -29,19 +30,19 @@ module UserModule
   end
 
   @@users = {}
+  class AddDisplay
+    def add_user(username, first_name, last_name, password)
+      u=User.new(username,first_name,last_name,password)
 
-  def self.add_user(username, first_name, last_name, password)
-    u=User.new(username,first_name,last_name,password)
-
-    if @@users[username]
-      puts "user with username #{username} already exit"
-    else
-      @@users[username] = u.to_s
+      if @@users[username]
+        puts "user with username #{username} already exit"
+      else
+        @@users[username] = u.to_s
+      end
     end
-  end
 
-  def display_users()
-    puts "Users:"
-    p @@users
-  end
+    def display_users()
+      puts "Users:"
+      p @@users
+    end
 end
