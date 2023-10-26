@@ -15,26 +15,18 @@ module Admin
       admin_pass=gets.chomp
 
       if admin_id == 'admin123' && admin_pass == 'password123'
-
+        b=BookModule::BookStore.new
         puts 'Welcome back'
-        puts 'Enter book details (ID, Title, Author, Description):'
-        puts 'enter book id'
-        b_id=gets.chomp
-
-        if @@books[b_id]
-          puts "book with id #{b_id} already exit"
-        else
-          puts 'enter book title'
-          ttl=gets.chomp
-          puts 'enter description'
-          desc=gets.chomp
-          puts 'enter author name'
-          auth=gets.chomp
-          BookModule.add_book(b_id,ttl,auth,desc)
-          puts "Book #{b_id} has been created."
-        end
-
-      else puts 'Sorry! id or password does not match'
+        puts 'Enter book details (Title, Author, Description):'
+        puts 'enter book title'
+        ttl=gets.chomp
+        puts 'enter description'
+        desc=gets.chomp
+        puts 'enter author name'
+        auth=gets.chomp
+        b.add_book(ttl,auth,desc)
+      else
+        puts 'Sorry! id or password does not match'
       end
     else
       puts 'Only admins and owners can create books.'

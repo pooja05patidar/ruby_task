@@ -12,15 +12,6 @@ module UserModule
       @password = password
     end
 
-    # def login(password)
-    #   if password == @password
-    #     @logged_in = true
-    #     puts "Login successful for user #{@username}."
-    #   else
-    #     puts "Login failed. Incorrect password."
-    #   end
-    # end
-
     def to_s
       "{user ID: #{id}\n"\
       "username : #{username}\n"\
@@ -28,21 +19,25 @@ module UserModule
       "lastname : #{last_name}}"\
     end
   end
-
-  @@users = {}
-  class AddDisplay
+  class UserManager
+    attr_accessor :users
+    @@users = {}
     def add_user(username, first_name, last_name, password)
       u=User.new(username,first_name,last_name,password)
 
-      if @@users[username]
+      if users[username]
         puts "user with username #{username} already exit"
       else
-        @@users[username] = u.to_s
+        users[username] = u.to_s
       end
     end
 
     def display_users()
       puts "Users:"
-      p @@users
+      puts users.each_pair {|key , value| puts key,value}
     end
+    def users
+      @@users
+    end
+  end
 end

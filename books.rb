@@ -1,15 +1,15 @@
 #books.rb
+# frozen_string_literal: true
 module BookModule
   class Book
-    attr_accessor :id ,:title, :author, :description
-
-    def initialize(id,title, author, description)
-      @id=id
+    attr_accessor :id, :title, :author, :description
+    @@id = 0
+    def initialize(title, author, description)
+      @id = @@id +=1
       @title = title
       @author = author
       @description = description
     end
-
     def to_s
       "Book id: #{id}\n"\
       "Book Title : #{title}\n"\
@@ -17,24 +17,22 @@ module BookModule
       "Book Descrription : #{description}"\
     end
   end
-
-  @@books={}
-
-  def self.add_book(id, title, author, description)
-    b = Book.new(id, title, author, description)
-
-    if @@books[id]
-      puts "book with id #{id} already exit"
-    else
-      @@books[id] = b.to_s
+  class BookStore
+    @@books = {}
+    def add_book(title, author, description)
+      b = Book.new( title, author, description)
+      if books[b.id]
+        puts "book with id #{id} already exit"
+      else
+        books[b.id] = b
+      end
+    end
+    def display_books
+      puts 'Books:'
+      books.each_pair {|key,value| puts key, value}
+    end
+    def books
+      @@books
     end
   end
-
-
-  def self.display_books()
-    puts 'Books:'
-    p @@books
-
-  end
-
 end
